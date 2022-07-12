@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 import {
   Categories,
   Home,
@@ -7,7 +6,6 @@ import {
   Order,
   Products
 } from "./pages";
-
 import { Routes, Route } from "react-router-dom";
 import { ContextProvider } from './context';
 

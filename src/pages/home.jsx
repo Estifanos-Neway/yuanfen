@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
-import imageUrlBuilder from '@sanity/image-url';
 import sanityClient from "../configs/sanity-client.js";
+import imageUrlBuilder from '@sanity/image-url';
 import {
-    Category,
-    LandingImage,
+    HomeView,
     Layout,
-    Notice,
-    ProductRow
 } from "../components";
 import { useContextProvider } from "../context"
 
@@ -22,41 +19,45 @@ export default function Home() {
     const [landingImages, setLandingImages] = useState([])
     const [notices, setNotices] = useState([]);
     const [categories, setCategories] = useState([]);
-    const { products, setProducts } = useContextProvider();
+    const { products } = useContextProvider();
+
     useEffect(() => {
-        sanityClient.fetch(othersQuery).then((othersQueryRes) => {
-            setOther(othersQueryRes[0]);
+        try {
+            sanityClient.fetch(othersQuery).then((othersQueryRes) => {
+                setOther(othersQueryRes[0]);
 
-            sanityClient.fetch(landingImagesQuery).then((landingImagesQueryRes) => {
-                setLandingImages(landingImagesQueryRes[0].images.map(landingImage => landingImage.asset.url));
+                sanityClient.fetch(landingImagesQuery).then((landingImagesQueryRes) => {
+                    setLandingImages(landingImagesQueryRes[0].images.map(landingImage => landingImage.asset.url));
+                    // setLandingImages(landingImagesQueryRes[0].images.map(landingImage => imageBuilder.image(landingImage).size(225, 300).url()));
 
-                sanityClient.fetch(noticesQuery).then((noticesQueryRes) => {
-                    setNotices(noticesQueryRes);
+                    sanityClient.fetch(noticesQuery).then((noticesQueryRes) => {
+                        setNotices(noticesQueryRes);
+                    });
                 });
-            });
-        })
+            })
+        } catch (error) {
+            console.error("error");
+            console.dir(error, { depth: null })
+        }
+
     }, []);
     useEffect(() => {
-        sanityClient.fetch(categoriesQuery).then((categoriesQueryRes) => {
-            categoriesQueryRes = categoriesQueryRes.filter(category => category.name in products);
-            categoriesQueryRes.sort((a, b) => a.priority < b.priority ? -1 : 1);
-            setCategories(categoriesQueryRes);
-        });
+        try {
+            sanityClient.fetch(categoriesQuery).then((categoriesQueryRes) => {
+                categoriesQueryRes = categoriesQueryRes.filter(category => category.name in products);
+                categoriesQueryRes.sort((a, b) => a.priority > b.priority ? -1 : 1);
+                setCategories(categoriesQueryRes);
+            });
+        } catch (error) {
+            console.error("error");
+            console.dir(error, { depth: null })
+        }
+
     }, [Object.keys(products).length]);
 
     return (
         <Layout>
-            <b>-----------Hero-----------</b>
-            <br />
-            {landingImages.map((landingImageUrl, index) => <LandingImage url={landingImageUrl} key={index} />)}
-            <p>Yuanfen {other.whatAreWe}</p>
-            <b>-----------Description-----------</b>
-            <p>{other.description}</p>
-            <p>{other.youCanComeWith}</p>
-            {notices.map((notice, index) => <Notice title={notice.title} detail={notice.detail} key={index} />)}
-            <b>-----------Our products-----------</b>
-            {categories.map((category, index) => <Category key={index} name={category.name} imageUrl={imageBuilder.image(category.image.asset.url).height(60).url()} />)}
-            {categories.map((category, index) => <ProductRow key={index} categoryName={category.name} productList={products[category.name]} />)}
+            {<HomeView landingImages={landingImages} other={other} notices={notices} categories={categories} products={products} />}
         </Layout>
     )
 }

@@ -1,8 +1,17 @@
-export default function Category({name, imageUrl}) {
-  return (
-    <div>
-        <img src={imageUrl}/>
+import { Retry } from "./"
+
+export default function Category({ name, imageUrl }) {
+  try {
+    return (
+      <div>
+        <img src={imageUrl} />
         {name}
-    </div>
-  )
+      </div>
+    )
+  } catch (error) {
+    console.error("error");
+            console.dir(error,{depth:null});
+    return <Retry />
+  }
+
 }
