@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -9,6 +11,11 @@ module.exports = {
         logo: ['Bodoni Moda', 'serif'],
         subLogo: ['ABeeZee', 'sans-serif']
       }
+    },
+    screens: {
+      'xxs': '400px',
+      'xs': '500px',
+      ...defaultTheme.screens,
     },
   },
   plugins: [],

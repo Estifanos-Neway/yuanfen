@@ -10,13 +10,21 @@
 }
 
 .landingCol{
-    @apply flex flex-col
+    @apply flex flex-col items-end w-1/2;
+    /* max-width: 320px; */ 
 }
-
+@media (min-width: 768px) {
+    .landingCol {
+        max-width: 150px;
+    }
+}
 .landingCol3{
-    @apply hidden sm:block
+    @apply hidden md:block
 }
 
 .landingImage{
-    @apply p-1  object-cover
+    @apply p-1 object-cover;
+    -webkit-background-clip: content-box;
+    background-clip: content-box;
+    background-color: #c2c2c2;
 }
