@@ -1,5 +1,6 @@
 
-import { useContextProvider } from "../context"
+import React from "react";
+import { useMainContext } from "../contexts";
 import { Retry } from "./";
 import { AiOutlineInstagram, AiOutlinePhone } from "react-icons/ai";
 import { RiFacebookCircleLine } from "react-icons/ri";
@@ -8,21 +9,21 @@ import { HiOutlineMail } from "react-icons/hi";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { MdShoppingCart } from "react-icons/md";
 import { closeSidebar, openSidebar } from "../functions";
-import {IoIosBowtie} from "react-icons/io" 
+import { IoIosBowtie } from "react-icons/io";
 
 
 export default function Layout({ children, noFooter = false }) {
-    const { socials } = useContextProvider();
-    const instagramUrl = `https://www.instagram.com/${socials.instagram}`
-    const facebookUrl = `https://www.facebook.com/${socials.faceook}`
-    const telegramUrl = `https://t.me/${socials.telegram}`
-    const emailUrl = `mailto:${socials.email}`
+    // TODO: useEffect
+    const { socials } = useMainContext();
+    const instagramUrl = `https://www.instagram.com/${socials.instagram}`;
+    const facebookUrl = `https://www.facebook.com/${socials.faceook}`;
+    const telegramUrl = `https://t.me/${socials.telegram}`;
+    const emailUrl = `mailto:${socials.email}`;
     try {
-        return (
-            <>
-            <div style={{color:"#1a1a1a"}}> 
+        return <>
+            <div className="font-main text-gray-900 bg-red-500">
                 <div className="fixed z-40 w-screen h-screen bg-black hidden duration-300 ease-normal md:hidden" id="sidebarBg" onClick={closeSidebar} ></div>
-                <aside className="fixed z-50 w-0 md:w-20 h-full overflow-hidden bg-white border-r-gray-400 md:border-r duration-300 ease-normal py-5 "  style={{ "minHeight": "320px" }} id="sidebar">
+                <aside className="fixed z-50 w-0 md:w-20 h-full overflow-hidden bg-white md:border-r duration-300 ease-normal py-5 " style={{ "minHeight": "320px" }} id="sidebar">
                     <div className="h-full flex flex-col justify-between items-center">
                         <div className="">
                             <IoIosBowtie className="text-5xl text-black" />
@@ -50,11 +51,8 @@ export default function Layout({ children, noFooter = false }) {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href={emailUrl}>
-                                        <AiOutlinePhone className="sidebarIcon" />
-                                    </a>
+                                    <AiOutlinePhone className="sidebarIcon" />
                                 </li>
-
                             </ul>
                             <div className="w-full h-px bg-gray-500 rounded"></div>
                             <div>
@@ -69,26 +67,48 @@ export default function Layout({ children, noFooter = false }) {
                 <div className="fixed bottom-4 z-30 md:hidden bg-black bg-opacity-70 p-3 rounded-tr-2xl rounded-br-2xl" onClick={openSidebar}>
                     <FaChevronRight className="text-white text-xl" />
                 </div>
-                <main className="bg-gray-200b absolute md:left-20 right-0">
+                <main className="bg-gray-200b absolute w-screen md:w-auto min-w-[300px]  md:left-20 right-0 overflow-x-hidden">
                     {children}
-                    {noFooter ? <></> : <footer>
-                        <a href={instagramUrl}>
-                            <AiOutlineInstagram />
-                        </a>
-                        <a href={facebookUrl}>
-                            <RiFacebookCircleLine />
-                        </a>
-                        <a href={telegramUrl}>
-                            <TbBrandTelegram />
-                        </a>
-                        <a href={emailUrl}>
-                            <HiOutlineMail />
-                        </a>
-                    </footer>}
+                    {
+                        <footer className="bg-gray-200 mt-10" >
+                            <div className="flex flex-col justify-center items-center py-3">
+                                <div>
+                                    <p className="text-xl">follow and contact us</p>
+                                </div>
+                                <div className="flex justify-center gap-8 sm:gap-16 mt-5 mb-11">
+                                    <div className="footerIconCon">
+                                        <a href={instagramUrl}>
+                                            <AiOutlineInstagram className="footerIcon" />
+                                        </a>
+                                    </div>
+                                    <div className="footerIconCon">
+                                        <a href={facebookUrl}>
+                                            <RiFacebookCircleLine className="footerIcon" />
+                                        </a>
+                                    </div>
+                                    <div className="footerIconCon">
+                                        <a href={telegramUrl}>
+                                            <TbBrandTelegram className="footerIcon" />
+                                        </a>
+                                    </div>
+                                    <div className="footerIconCon">
+                                        <a href={emailUrl}>
+                                            <HiOutlineMail className="footerIcon" />
+                                        </a>
+                                    </div>
+                                    <div className="footerIconCon">
+                                        <AiOutlinePhone className="footerIcon" />
+                                    </div>
+                                </div>
+                                <p className="text-xs">
+                                    &copy; {new Date().getFullYear()} <b>Yuanfen Fashion Designs</b>. All rights reserved!
+                                </p>
+                            </div>
+                        </footer>
+                    }
                 </main>
-                </div>
-            </>
-        )
+            </div>
+        </>
     } catch (error) {
         console.error("error");
         console.dir(error, { depth: null });

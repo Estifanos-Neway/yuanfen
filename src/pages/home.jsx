@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
-import sanityClient from "../configs/sanity-client.js";
-import imageUrlBuilder from '@sanity/image-url';
+import React, { useState, useEffect } from "react";
+import sanityClient from "../configs/sanity-client";
 import {
-    HomeView,
     Layout,
 } from "../components";
-import { useContextProvider } from "../context"
-
-const imageBuilder = imageUrlBuilder(sanityClient)
+import { HomeView } from "../page-views"
+import { useMainContext } from "../contexts"
 
 const othersQuery = "*[_type == 'other']{whatAreWe, description, youCanComeWith}"
 const landingImagesQuery = "*[_type == 'landingImage']{images[]{asset->{url}}}"
@@ -19,17 +16,13 @@ export default function Home() {
     const [landingImages, setLandingImages] = useState([])
     const [notices, setNotices] = useState([]);
     const [categories, setCategories] = useState([]);
-    const { products } = useContextProvider();
-
+    const { products } = useMainContext();
     useEffect(() => {
         try {
             sanityClient.fetch(othersQuery).then((othersQueryRes) => {
                 setOther(othersQueryRes[0]);
-
                 sanityClient.fetch(landingImagesQuery).then((landingImagesQueryRes) => {
                     setLandingImages(landingImagesQueryRes[0].images.map(landingImage => landingImage.asset.url));
-                    // setLandingImages(landingImagesQueryRes[0].images.map(landingImage => imageBuilder.image(landingImage).size(225, 300).url()));
-
                     sanityClient.fetch(noticesQuery).then((noticesQueryRes) => {
                         setNotices(noticesQueryRes);
                     });
@@ -52,7 +45,6 @@ export default function Home() {
             console.error("error");
             console.dir(error, { depth: null })
         }
-
     }, [Object.keys(products).length]);
 
     return (

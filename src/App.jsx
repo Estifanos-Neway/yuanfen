@@ -1,29 +1,29 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
-  Categories,
+  MoreProducts,
   Home,
   NotFound,
   Order,
-  Products
+  ProductDetail
 } from "./pages";
 import { Routes, Route } from "react-router-dom";
-import { ContextProvider } from './context';
+import { MainContext } from './contexts';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <ContextProvider>
+    <MainContext>
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
             path="/products/:productId"
-            element={<Products />}
+            element={<ProductDetail />}
           />
           <Route
             path="/categories/:categoryName"
-            element={<Categories />}
+            element={<MoreProducts />}
           />
           <Route
             path="/order/:productId"
@@ -32,7 +32,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-    </ContextProvider>
+    </MainContext>
   )
 }
 

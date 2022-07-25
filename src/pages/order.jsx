@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import sanityClient from "../configs/sanity-client.js";
 import { Layout, Loading, OrderView, Retry } from "../components";
@@ -23,7 +23,7 @@ export default function Order() {
       })
     } catch (error) {
       console.error("error");
-            console.dir(error,{depth:null});
+      console.dir(error, { depth: null });
       setPageContent(<Retry />);
     }
   }, [])

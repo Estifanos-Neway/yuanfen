@@ -1,8 +1,8 @@
 
-export default function LandingImage({ children }) {
+import React from "react";
+import SizedImage from "./sized-image"
+export default function LandingImage({ url, size = [400, 467] }) {
   return (
-    <div style={{ "background": "red" }}>
-      {children}
-    </div>
+    <SizedImage className="landingImage" url={url} size={size} />
   )
 }

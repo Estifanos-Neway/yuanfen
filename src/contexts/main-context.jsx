@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from 'react'
+import React, { createContext, useState, useContext, useEffect } from "react"
 import sanityClient from "../configs/sanity-client.js";
 
 // @ts-ignore
@@ -6,7 +6,7 @@ const Context = createContext();
 const productsQuery = "*[_type == 'product']{_id, category->{name}, primaryImage{asset->{url}}, price, productId}"
 const socialsQuery = "*[_type == 'other']{instagram, facebook, telegram, email}"
 
-export default function ContextProvider({ children }) {
+export default function MainContext({ children }) {
   const [products, setProducts] = useState({});
   const [socials, setSocial] = useState({});
 
@@ -17,7 +17,7 @@ export default function ContextProvider({ children }) {
       })
     } catch (error) {
       console.error("error");
-            console.dir(error,{depth:null});
+      console.dir(error, { depth: null });
     }
 
     try {
@@ -34,7 +34,7 @@ export default function ContextProvider({ children }) {
       })
     } catch (error) {
       console.error("error");
-            console.dir(error,{depth:null});
+      console.dir(error, { depth: null });
 
     }
   }, [])
@@ -45,4 +45,4 @@ export default function ContextProvider({ children }) {
   )
 }
 
-export const useContextProvider = () => useContext(Context);
+export const useMainContext = () => useContext(Context);

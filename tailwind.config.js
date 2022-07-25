@@ -7,9 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily:{
+      fontFamily: {
         logo: ['Bodoni Moda', 'serif'],
-        subLogo: ['ABeeZee', 'sans-serif']
+        subLogo: ['ABeeZee', 'sans-serif'],
+        main: ['Montserrat', 'sans-serif']
       }
     },
     screens: {
