@@ -13,11 +13,17 @@
     @apply text-3xl md:text-2xl 
 }
 .footerIconCon{
-    @apply border border-gray-300 rounded p-0.5
+    @apply border border-gray-400 rounded p-0.5
 }
 .landingCol{
     @apply flex flex-col items-end w-1/2;
     /* max-width: 320px; */ 
+}
+.primaryGradientBg{
+    @apply bg-gradient-to-br from-[#121212] to-[#083E54] text-white;
+}
+.primaryGradientBgLight{
+    @apply bg-gradient-to-br from-[#097DAB] to-[#024159] text-white;
 }
 @media (min-width: 768px) {
     .landingCol {
@@ -27,7 +33,9 @@
 .landingCol3{
     @apply hidden md:block
 }
-
+.footerTextField{
+    @apply bg-white border shadow w-80 sm:w-[500px] rounded-lg p-3 resize-none outline-none
+}
 .landingImage{
     @apply p-1 object-cover;
     -webkit-background-clip: content-box;

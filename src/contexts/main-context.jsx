@@ -3,7 +3,7 @@ import sanityClient from "../configs/sanity-client.js";
 
 // @ts-ignore
 const Context = createContext();
-const productsQuery = "*[_type == 'product']{_id, category->{name}, primaryImage{asset->{url}}, price, productId}"
+const productsQuery = "*[_type == 'product'] | order(priority desc) {_id, category->{name}, primaryImage{asset->{url}}, price, productId}"
 const socialsQuery = "*[_type == 'other']{instagram, facebook, telegram, email}"
 
 export default function MainContext({ children }) {

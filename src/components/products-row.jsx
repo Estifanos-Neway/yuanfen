@@ -7,22 +7,11 @@ import { Product } from "."
 
 export default function ProductsRow({ categoryName, productList }) {
   useEffect(() => {
-    productList.push(productList[0])
-    productList.push(productList[1])
-    productList.push(productList[2])
-    // productList.push(productList[3])
-    // productList.push(productList[0])
-    // productList.push(productList[1])
-    // productList.push(productList[2])
-    // productList.push(productList[3])
   })
   const flicking = createRef()
   try {
-    // productList.push(productList[0])
-    // productList.push(productList[1])
-    // productList.push(productList[2])
     return (
-      <div>
+      <div id={categoryName}>
         <div className="flex justify-between mb-2">
           <p className='font-semibold'>{categoryName}</p>
           <Link className="text-xs text-blue-500" to={`/categories/${categoryName}`}>

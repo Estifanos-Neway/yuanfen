@@ -9,7 +9,7 @@ import { useMainContext } from "../contexts"
 const othersQuery = "*[_type == 'other']{whatAreWe, description, youCanComeWith}"
 const landingImagesQuery = "*[_type == 'landingImage']{images[]{asset->{url}}}"
 const noticesQuery = "*[_type == 'notice']{title, detail}"
-const categoriesQuery = "*[_type == 'category']{name, image{asset->{url}}, priority}"
+const categoriesQuery = "*[_type == 'category'] | order(priority desc) {name, image{asset->{url}}, priority}"
 
 export default function Home() {
     const [other, setOther] = useState({ whatAreWe: "", description: "", youCanComeWith: "" });

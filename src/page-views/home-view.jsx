@@ -3,15 +3,16 @@ import React from 'react';
 import imageUrlBuilder from '@sanity/image-url';
 import sanityClient from '../configs/sanity-client'
 import { Notice, Category, ProductsRow, Retry, LandingImage } from '../components'
+import { HashLink } from 'react-router-hash-link';
 
 const imageBuilder = imageUrlBuilder(sanityClient);
 
 export default function HomeView({ landingImages, other, notices, categories, products }) {
     try {
         return (
-            <div className='w-full'>
+            <div className='w-full' id="hero">
                 <div className='relative'>
-                    <div className='flex w-full items-start justify-end overflow-y-hidden h-screen' style={{ minHeight: "320px", maxHeight: "780px"}}>
+                    <div className='flex w-full items-start justify-end overflow-y-hidden h-screen' style={{ minHeight: "320px", maxHeight: "780px" }}>
                         <div className='landingCol'>
                             <LandingImage url={landingImages[1]} size={[400, 200]} />
                             <div className='w-full flex flex-col justify-center items-center md:items-end py-14 whitespace-nowrap lg:pr-9 md:pr-4 '>
@@ -38,9 +39,11 @@ export default function HomeView({ landingImages, other, notices, categories, pr
                         </div>
                     </div>
                     <div className='md:hidden absolute left-0 bottom-4 w-screen flex justify-center'>
-                        <div className='bg-white rounded-lg shadow-2xl border border-gray-300 shadow-black p-1.5 px-7 text-lg'>
-                            Order now
-                        </div>
+                        <HashLink smooth to="#footerOrder">
+                            <div className='bg-white rounded-lg shadow-2xl border border-gray-300 shadow-black p-1.5 px-7 text-lg'>
+                                Order now
+                            </div>
+                        </HashLink>
                     </div>
                 </div>
                 <div className='py-10'>
@@ -63,16 +66,16 @@ export default function HomeView({ landingImages, other, notices, categories, pr
                         <p className='font-semibold'>Our Products</p>
                         <div className='flex gap-3 pl-2 md:pl-3'>
                             {categories.map((category, index) => <Category key={index} name={category.name} imageUrl={imageBuilder.image(category.image).size(50, 50).url()} />)}
-                            <div className="flex justify-center items-center text-center p-1 w-10 h-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500">
-                                <p className='font-bold' style={{ "fontSize": "9px" }}>and More</p>
+                            <div className="flex justify-center items-center text-center w-10 h-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 primaryGradientBg">
+                                <p className='font-bold text-[9px]'>and More</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className='px-4 md:px-10 flex flex-col gap-4'> 
+                <div className='px-4 md:px-10 flex flex-col gap-4'>
                     {categories.map((category, index) => <ProductsRow key={index} categoryName={category.name} productList={products[category.name]} />)}
-                    <div className='bg-black text-center p-4 rounded-lg mx-2 md:mx-4'>
-                        <p className='text-white text-xl'>
+                    <div className='text-center p-4 rounded-lg mx-2 md:mx-4 primaryGradientBg'>
+                        <p className='text-xl'>
                             {other.youCanComeWith}
                         </p>
                     </div>
