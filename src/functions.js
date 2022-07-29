@@ -3,6 +3,10 @@ function get(id) {
     return document.getElementById(id);
 }
 
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
 function closeSidebar() {
     const sidebar = get("sidebar");
     const sidebarBg = get("sidebarBg");
@@ -21,4 +25,4 @@ function openSidebar() {
     sidebar?.classList.replace("w-0", "w-24");
 }
 
-export { closeSidebar, openSidebar }
+export { capitalize, closeSidebar, openSidebar }

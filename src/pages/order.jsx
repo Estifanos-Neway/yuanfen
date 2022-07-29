@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import sanityClient from "../configs/sanity-client.js";
 import { Layout, Loading, OrderView, Retry } from "../components";
-
+import { aboutToOrder } from "../commons/strings.js";
 const messageQuery = "*[_type == 'other']{aboutToOrder}"
 
 export default function Order() {
@@ -17,7 +17,7 @@ export default function Order() {
           navigate("../notfound", { replace: true });
         } else {
           sanityClient.fetch(messageQuery).then((messageQueryRes) => {
-            setPageContent(<OrderView categoryName={productQueryRes[0].category.name} imageUrl={productQueryRes[0].primaryImage.asset.url} message={messageQueryRes[0].aboutToOrder} productId={productQueryRes[0].productId} />)
+            setPageContent(<OrderView categoryName={productQueryRes[0].category.name} imageUrl={productQueryRes[0].primaryImage.asset.url} message={aboutToOrder} productId={productQueryRes[0].productId} />)
           });
         }
       })
@@ -28,7 +28,7 @@ export default function Order() {
     }
   }, [])
   return (
-    <Layout noFooter={true}>
+    <Layout noFooterOrder={true}>
       {pageContent}
     </Layout>
   )

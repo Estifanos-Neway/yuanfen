@@ -4,6 +4,7 @@ import imageUrlBuilder from '@sanity/image-url';
 import sanityClient from '../configs/sanity-client'
 import { Notice, Category, ProductsRow, Retry, LandingImage } from '../components'
 import { HashLink } from 'react-router-hash-link';
+import Flicking from '@egjs/react-flicking';
 
 const imageBuilder = imageUrlBuilder(sanityClient);
 
@@ -64,11 +65,13 @@ export default function HomeView({ landingImages, other, notices, categories, pr
                 <div className='pl-4 md:pl-10 mb-10'>
                     <div className='flex flex-col gap-2'>
                         <p className='font-semibold'>Our Products</p>
-                        <div className='flex gap-3 pl-2 md:pl-3'>
-                            {categories.map((category, index) => <Category key={index} name={category.name} imageUrl={imageBuilder.image(category.image).size(50, 50).url()} />)}
-                            <div className="flex justify-center items-center text-center w-10 h-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 primaryGradientBg">
-                                <p className='font-bold text-[9px]'>and More</p>
-                            </div>
+                        <div className='px-2 md:px-3'>
+                            <Flicking className="overflow-visible" bound={true} bounce={0} align="prev" renderOnlyVisible={true}>
+                                {categories.map((category, index) => <div className="flicking-panel mr-3" key={index}><Category key={index} name={category.name} imageUrl={imageBuilder.image(category.image).size(50, 50).url()} /></div> )}
+                                <div className="flicking-panel inline-flex justify-center items-center text-center w-10 h-10 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 primaryGradientBg" key={categories.length}>
+                                    <p className='font-bold text-[9px]'>and More</p>
+                                </div>
+                            </Flicking>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,10 @@ module.exports = {
         logo: ['Bodoni Moda', 'serif'],
         subLogo: ['ABeeZee', 'sans-serif'],
         main: ['Montserrat', 'sans-serif']
-      }
+      },
+      colors: {
+        primary: "#097DAB"
+      },
     },
     screens: {
       'xxs': '400px',

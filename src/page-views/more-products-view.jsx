@@ -1,15 +1,24 @@
 import React, { useEffect } from "react";
-import { Product, Retry } from "../components";
+import { companyName } from "../commons/strings";
+import { Divider, Product, Retry } from "../components";
+import { capitalize } from "../functions";
 
 export default function MoreProductsView({ categoryName, productList }) {
   useEffect(() => {
-    categoryName = `${categoryName[0].toUpperCase()}${categoryName.substring(1)}`;
+    categoryName = capitalize(categoryName);
   }, [categoryName]);
   try {
     return (
-      <div>
-        <p>{categoryName}</p>
-        {productList.map((product, index) => <Product key={index} _id={product._id} price={product.price} imageUrl={product.primaryImage.asset.url} />)}
+      <div className="px-3 sm:px-12 lg:px-32 py-5 flex flex-col items-center gap-8">
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-lg">{categoryName} by {capitalize(companyName)}</p>
+          <div className="w-[60px] divider"></div>
+        </div>
+        <div className="grid w-full justify-evenly gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, 187.5px" }
+        }>
+          {productList.map((product, index) => <Product key={index} _id={product._id} price={product.price} imageUrl={product.primaryImage.asset.url} />)}
+          <div className="flicking-panel" key={productList.length}><Product _id="" price="" imageUrl="" finalInList={true} /></div>
+        </div>
       </div>
     )
   } catch (error) {

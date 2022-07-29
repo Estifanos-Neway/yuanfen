@@ -9,3 +9,4 @@ export { default as OrderView } from "../page-views/order-view";
 export { default as Loading } from "./loading";
 export { default as Retry } from "./retry";
 export { default as SizedImage } from "./sized-image";
+export { default as Divider } from "./divider"

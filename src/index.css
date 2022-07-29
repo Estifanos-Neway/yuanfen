@@ -25,6 +25,9 @@
 .primaryGradientBgLight{
     @apply bg-gradient-to-br from-[#097DAB] to-[#024159] text-white;
 }
+.divider{
+    @apply bg-primary rounded h-1
+}
 @media (min-width: 768px) {
     .landingCol {
         max-width: 150px;

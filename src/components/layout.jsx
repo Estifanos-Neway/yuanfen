@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
 
 
-export default function Layout({ children, noFooter = false }) {
+export default function Layout({ children, noFooterOrder = false }) {
     // TODO: useEffect
     const { socials } = useMainContext();
     const instagramUrl = `https://www.instagram.com/${socials.instagram}`;
@@ -79,15 +79,19 @@ export default function Layout({ children, noFooter = false }) {
                 <main className="bg-gray-200b absolute w-screen md:w-auto min-w-[300px]  md:left-20 right-0 overflow-x-hidden">
                     {children}
                     {
-                        <footer className="bg-gray-200 mt-10 flex flex-col items-center px-0 pt-3 gap-16" >
-                            <div className="flex flex-col items-center gap-2" id="footerOrder">
-                                <p className="text-2xl">Order Here</p>
-                                <form className="flex flex-col items-center gap-3">
-                                    <textarea placeholder="Where to contact you back: phone, telegram, facebook or other" rows={2} className="footerTextField"></textarea>
-                                    <textarea placeholder="What is your order?" rows={4} className="footerTextField"></textarea>
-                                    <input type="submit" value="Submit order" className="w-80 sm:w-[500px] shadow-lg p-2 rounded-lg primaryGradientBg" />
-                                </form>
-                            </div>
+                        <footer className="bg-gray-200 mt-10 flex flex-col items-center px-0 gap-16" >
+                            {
+                                noFooterOrder ?
+                                    <></> :
+                                    <div className="flex flex-col items-center gap-2 pt-3" id="footerOrder">
+                                        <p className="text-2xl">Order Here</p>
+                                        <form className="flex flex-col items-center gap-3">
+                                            <textarea placeholder="Where to contact you back: phone, telegram, facebook or other" rows={2} className="footerTextField"></textarea>
+                                            <textarea placeholder="What is your order?" rows={4} className="footerTextField"></textarea>
+                                            <input type="submit" value="Submit order" className="w-80 sm:w-[500px] shadow-lg p-2 rounded-lg primaryGradientBg" />
+                                        </form>
+                                    </div>
+                            }
                             <div className="flex flex-col items-center w-full bg-gray-300 py-3">
                                 <div>
                                     <p className="text-xl">follow and contact us</p>

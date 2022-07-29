@@ -18,7 +18,7 @@ export default function ProductsRow({ categoryName, productList }) {
             see more
           </Link>
         </div>
-        <div className="relative h-[200px] ">
+        <div className="relative h-[250px] ">
           <div className="pl-2 md:pl-4 z-0">
             <Flicking className="overflow-visible" bound={true} bounce={0} align="prev" renderOnlyVisible={true} ref={flicking}>
               {productList.map((product, index) => <div className="flicking-panel mr-5" key={index}><Product _id={product._id} price={product.price} imageUrl={product.primaryImage.asset.url} /></div>)}
