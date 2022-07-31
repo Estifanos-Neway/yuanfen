@@ -8,11 +8,26 @@ import { TbBrandTelegram } from "react-icons/tb";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { MdShoppingCart } from "react-icons/md";
-import { closeSidebar, openSidebar } from "../functions";
 import { IoIosBowtie } from "react-icons/io";
-import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
 
+function closeSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const sidebarBg = document.getElementById("sidebarBg");
+    sidebar?.classList.replace("w-24", "w-0");
+    sidebarBg?.classList.replace("bg-opacity-50", "hidden");
+}
+
+function openSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const sidebarBg = document.getElementById("sidebarBg");
+    sidebarBg?.classList.remove("hidden");
+    sidebarBg?.classList.add("bg-opacity-0")
+    setTimeout(() => {
+        sidebarBg?.classList.replace("bg-opacity-0", "bg-opacity-50");
+    }, 0);
+    sidebar?.classList.replace("w-0", "w-24");
+}
 
 export default function Layout({ children, noFooterOrder = false }) {
     // TODO: useEffect
@@ -88,7 +103,7 @@ export default function Layout({ children, noFooterOrder = false }) {
                                         <form className="flex flex-col items-center gap-3">
                                             <textarea placeholder="Where to contact you back: phone, telegram, facebook or other" rows={2} className="footerTextField"></textarea>
                                             <textarea placeholder="What is your order?" rows={4} className="footerTextField"></textarea>
-                                            <input type="submit" value="Submit order" className="w-80 sm:w-[500px] shadow-lg p-2 rounded-lg primaryGradientBg" />
+                                            <input type="submit" value="Submit order" className="w-80 sm:w-[500px] button" />
                                         </form>
                                     </div>
                             }

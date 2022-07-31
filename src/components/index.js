@@ -10,3 +10,4 @@ export { default as Loading } from "./loading";
 export { default as Retry } from "./retry";
 export { default as SizedImage } from "./sized-image";
 export { default as Divider } from "./divider"
+export { default as PreviewCarousel } from "./preview-carousel"

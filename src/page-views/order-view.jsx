@@ -10,7 +10,7 @@ export default function OrderView({ categoryName, imageUrl, message, productId }
                     <div className="w-[120px] divider"></div>
                 </div>
                 <div className='flex flex-wrap justify-center gap-x-14 items-center gap-3'>
-                    <SizedImage className='rounded-xl shadow-lg' url={imageUrl} size={[262, 350]} />
+                    <SizedImage className='shadow-xl rounded-lg' url={imageUrl} size={[262, 350]} />
                     <div className='flex flex-col items-center gap-6'>
                         <p className='text-center max-w-sm sm:max-w-lg text-black'>{message}</p>
                         <form className="flex flex-col items-center gap-3">

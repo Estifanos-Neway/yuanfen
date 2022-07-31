@@ -43,5 +43,13 @@
     @apply p-1 object-cover;
     -webkit-background-clip: content-box;
     background-clip: content-box;
-    background-color: #c2c2c2;
+    /* background-color: #c2c2c2; */
+}
+
+.imageCard{
+    @apply shadow-xl rounded-lg 
+}
+
+.button{
+    @apply shadow-lg p-2 rounded-lg primaryGradientBg text-center
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { companyName } from "../commons/strings";
 import { Divider, Product, Retry } from "../components";
-import { capitalize } from "../functions";
+import { capitalize } from "../commons/functions";
 
 export default function MoreProductsView({ categoryName, productList }) {
   useEffect(() => {

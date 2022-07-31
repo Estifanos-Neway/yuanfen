@@ -9,7 +9,7 @@ export default function Product({ _id, price, imageUrl, finalInList = false }) {
     return (
         <div>
 
-            <div className="relative rounded-lg overflow-hidden w-[187.5px] h-[250px] shadow-xl">
+            <div className="relative overflow-hidden w-[187.5px] h-[250px] imageCard">
                 {finalInList ?
                     <div className="w-full h-full flex justify-center items-center primaryGradientBg">
                         <HashLink smooth to="#footerOrder">

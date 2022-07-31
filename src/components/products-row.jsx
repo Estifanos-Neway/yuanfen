@@ -1,7 +1,6 @@
 import React, { createRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Flicking from "@egjs/react-flicking";
-import "@egjs/react-flicking/dist/flicking-inline.css";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
 import { Product } from "."
 

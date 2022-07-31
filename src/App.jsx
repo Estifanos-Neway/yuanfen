@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   MoreProducts,
   Home,
@@ -9,9 +9,10 @@ import {
 import { Routes, Route } from "react-router-dom";
 import { MainContext } from './contexts';
 
-function App() {
-  const [count, setCount] = useState(0)
+import "react-alice-carousel/lib/alice-carousel.css";
+import "@egjs/react-flicking/dist/flicking-inline.css";
 
+function App() {
   return (
     <MainContext>
       <div className="App">

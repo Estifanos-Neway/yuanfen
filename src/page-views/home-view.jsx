@@ -5,6 +5,7 @@ import sanityClient from '../configs/sanity-client'
 import { Notice, Category, ProductsRow, Retry, LandingImage } from '../components'
 import { HashLink } from 'react-router-hash-link';
 import Flicking from '@egjs/react-flicking';
+import { description, whatAreWe, youCanComeWith } from '../commons/strings';
 
 const imageBuilder = imageUrlBuilder(sanityClient);
 
@@ -18,7 +19,7 @@ export default function HomeView({ landingImages, other, notices, categories, pr
                             <LandingImage url={landingImages[1]} size={[400, 200]} />
                             <div className='w-full flex flex-col justify-center items-center md:items-end py-14 whitespace-nowrap lg:pr-9 md:pr-4 '>
                                 <div className='font-logo text-3xl xxs:text-4xl md:text-7xl font-bold'>YUANFEN</div>
-                                <div className='font-subLogo text-md xxs:text-xl md:text-2xl'>{other.whatAreWe}&nbsp;</div>
+                                <div className='font-subLogo text-md xxs:text-xl md:text-2xl'>{whatAreWe}&nbsp;</div>
                             </div>
                             <LandingImage url={landingImages[9]} />
                             <LandingImage url={landingImages[10]} />
@@ -51,10 +52,10 @@ export default function HomeView({ landingImages, other, notices, categories, pr
                     <div className='flex flex-col items-center w-full gap-7'>
                         <div className='flex flex-col items-center w-full gap-2 text-center text-2xl px-11 max-w-lg'>
                             <div className='border-2 border-black py-11 px-5 font-medium'>
-                                <p>{other.description}</p>
+                                <p>{description}</p>
                             </div>
                             <div className=''>
-                                <p>{other.youCanComeWith}</p>
+                                <p>{youCanComeWith}</p>
                             </div>
                         </div>
                         <div className='flex flex-col gap-4 px-4 '>
@@ -79,7 +80,7 @@ export default function HomeView({ landingImages, other, notices, categories, pr
                     {categories.map((category, index) => <ProductsRow key={index} categoryName={category.name} productList={products[category.name]} />)}
                     <div className='text-center p-4 rounded-lg mx-2 md:mx-4 primaryGradientBg'>
                         <p className='text-xl'>
-                            {other.youCanComeWith}
+                            {youCanComeWith}
                         </p>
                     </div>
 
