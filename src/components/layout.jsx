@@ -1,7 +1,7 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useMainContext } from "../contexts";
-import { Retry } from "./";
+import Retry from "./retry";
 import { AiOutlineInstagram, AiOutlinePhone } from "react-icons/ai";
 import { RiFacebookCircleLine } from "react-icons/ri";
 import { TbBrandTelegram } from "react-icons/tb";
@@ -10,6 +10,8 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { MdShoppingCart } from "react-icons/md";
 import { IoIosBowtie } from "react-icons/io";
 import { HashLink } from 'react-router-hash-link';
+import { useOrder } from "../hooks";
+import RequiredFiled from "./required-filed";
 
 function closeSidebar() {
     const sidebar = document.getElementById("sidebar");
@@ -31,11 +33,27 @@ function openSidebar() {
 
 export default function Layout({ children, noFooterOrder = false }) {
     // TODO: useEffect
+    const [validate, setValidate] = useState(false);
     const { socials } = useMainContext();
     const instagramUrl = `https://www.instagram.com/${socials.instagram}`;
     const facebookUrl = `https://www.facebook.com/${socials.faceook}`;
     const telegramUrl = `https://t.me/${socials.telegram}`;
     const emailUrl = `mailto:${socials.email}`;
+
+    const [sendOrder, orderingState] = useOrder();
+    const [contact, setContact] = useState("");
+    const [description, setDescription] = useState("");
+
+    function submitOrder(e) {
+        console.log(validate)
+        e.preventDefault();
+        setValidate(true);
+
+        if (contact.trim().length > 0 || description.trim().length > 0) {
+            // @ts-ignore
+            sendOrder(contact.trim(), description.trim());
+        }
+    }
     try {
         return <>
             <div className="font-main text-gray-900">
@@ -46,9 +64,6 @@ export default function Layout({ children, noFooterOrder = false }) {
                             <HashLink smooth to="/#hero">
                                 <IoIosBowtie className="text-5xl text-black" />
                             </HashLink>
-                            {/* <Link to="/#hero">
-                                <IoIosBowtie className="text-5xl text-black" />
-                            </Link> */}
                         </div>
                         <div className="flex flex-col items-center">
                             <ul>
@@ -100,10 +115,36 @@ export default function Layout({ children, noFooterOrder = false }) {
                                     <></> :
                                     <div className="flex flex-col items-center gap-2 pt-3" id="footerOrder">
                                         <p className="text-2xl">Order Here</p>
-                                        <form className="flex flex-col items-center gap-3">
-                                            <textarea placeholder="Where to contact you back: phone, telegram, facebook or other" rows={2} className="footerTextField"></textarea>
-                                            <textarea placeholder="What is your order?" rows={4} className="footerTextField"></textarea>
-                                            <input type="submit" value="Submit order" className="w-80 sm:w-[500px] button" />
+                                        <form className="flex flex-col items-center gap-3" onSubmit={submitOrder}>
+                                            <div className="flex flex-col gap-1">
+                                                <textarea
+                                                    value={contact}
+                                                    onChange={event => setContact(event.target.value)}
+                                                    placeholder="Where to contact you back: phone, telegram, facebook or other"
+                                                    rows={2}
+                                                    className="footerTextField "
+                                                ></textarea>
+                                                <RequiredFiled show={validate && contact.trim().length == 0} className="mb-2" />
+                                            </div>
+                                            <div className="flex flex-col gap-1">
+                                                <textarea
+                                                    value={description}
+                                                    onChange={event => setDescription(event.target.value)}
+                                                    placeholder="What is your order?"
+                                                    rows={4}
+                                                    className="footerTextField"
+                                                ></textarea>
+                                                <RequiredFiled show={validate && description.trim().length == 0} className="mb-2" />
+                                            </div>
+                                                <div className={`flex gap-1 items-center mt-4 ${orderingState !== "success" ? 'hidden' : ''}`}>
+                                                    <div className="bg-green-500 orderingStateInfoDecor"></div>
+                                                    <p className="text-green-700 orderingStateInfo">Order Successfully submitted! Thank you.</p>
+                                                </div>
+                                                <div className={`flex gap-1 items-center mt-4 ${orderingState !== "failed" ? 'hidden' : ''}`}>
+                                                    <div className="bg-red-500 orderingStateInfoDecor"></div>
+                                                    <p className="text-red-500 orderingStateInfo">Request failed! please try again.</p>
+                                                </div>
+                                            <input type="submit" value={`${orderingState !== "loading" ? 'Submit order' : 'Ordering...'}`} className="w-80 sm:w-[500px] button disabled:opacity-80" disabled={orderingState == "loading"} />
                                         </form>
                                     </div>
                             }

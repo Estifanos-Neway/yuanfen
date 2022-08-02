@@ -17,7 +17,14 @@ export default function ProductView({ _id, categoryName, imageUrls, productId })
                             (imageUrl) => <SizedImage url={imageUrl} size={[262, 350]} className="imageCard" />
                         }
                         previewBuilder={
-                            (preview) => <div className='mx-2 flex flex-col items-center gap-2'><SizedImage url={preview.item} size={[60, 80]} className="imageCard"/> {preview.isCurrent?<div className='w-3 divider'></div>:<></>}</div>
+                            (preview) => <div className='mx-2 flex flex-col items-center gap-2'>
+                                <SizedImage url={preview.item} size={[60, 80]} className="imageCard" />
+                                {
+                                    preview.isCurrent ?
+                                        <div className='w-3 divider'></div>
+                                        : <></>
+                                }
+                            </div>
                         }
                         className="flex flex-col items-center gap-12"
                     />

@@ -53,3 +53,10 @@
 .button{
     @apply shadow-lg p-2 rounded-lg primaryGradientBg text-center
 }
+.orderingStateInfo{
+    /* @apply te */
+}
+
+.orderingStateInfoDecor{
+    @apply h-5 w-1 rounded
+}
