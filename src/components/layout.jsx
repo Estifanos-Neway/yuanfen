@@ -11,7 +11,7 @@ import { MdShoppingCart } from "react-icons/md";
 import { IoIosBowtie } from "react-icons/io";
 import { HashLink } from 'react-router-hash-link';
 import { useOrder } from "../hooks";
-import RequiredFiled from "./required-filed";
+import OrderForm from "./order-form";
 
 function closeSidebar() {
     const sidebar = document.getElementById("sidebar");
@@ -33,27 +33,12 @@ function openSidebar() {
 
 export default function Layout({ children, noFooterOrder = false }) {
     // TODO: useEffect
-    const [validate, setValidate] = useState(false);
     const { socials } = useMainContext();
     const instagramUrl = `https://www.instagram.com/${socials.instagram}`;
     const facebookUrl = `https://www.facebook.com/${socials.faceook}`;
     const telegramUrl = `https://t.me/${socials.telegram}`;
     const emailUrl = `mailto:${socials.email}`;
 
-    const [sendOrder, orderingState] = useOrder();
-    const [contact, setContact] = useState("");
-    const [description, setDescription] = useState("");
-
-    function submitOrder(e) {
-        console.log(validate)
-        e.preventDefault();
-        setValidate(true);
-
-        if (contact.trim().length > 0 || description.trim().length > 0) {
-            // @ts-ignore
-            sendOrder(contact.trim(), description.trim());
-        }
-    }
     try {
         return <>
             <div className="font-main text-gray-900">
@@ -103,7 +88,7 @@ export default function Layout({ children, noFooterOrder = false }) {
                         </div>
                     </div>
                 </aside>
-                <div className="fixed bottom-4 z-30 md:hidden bg-black bg-opacity-70 p-3 rounded-tr-2xl rounded-br-2xl" onClick={openSidebar}>
+                <div className="fixed bottom-4 z-30 md:hidden primaryGradientBg bg-opacity-70 p-3 rounded-tr-2xl rounded-br-2xl" onClick={openSidebar}>
                     <FaChevronRight className="text-white text-xl" />
                 </div>
                 <main className="bg-gray-200b absolute w-screen md:w-auto min-w-[300px]  md:left-20 right-0 overflow-x-hidden">
@@ -115,37 +100,7 @@ export default function Layout({ children, noFooterOrder = false }) {
                                     <></> :
                                     <div className="flex flex-col items-center gap-2 pt-3" id="footerOrder">
                                         <p className="text-2xl">Order Here</p>
-                                        <form className="flex flex-col items-center gap-3" onSubmit={submitOrder}>
-                                            <div className="flex flex-col gap-1">
-                                                <textarea
-                                                    value={contact}
-                                                    onChange={event => setContact(event.target.value)}
-                                                    placeholder="Where to contact you back: phone, telegram, facebook or other"
-                                                    rows={2}
-                                                    className="footerTextField "
-                                                ></textarea>
-                                                <RequiredFiled show={validate && contact.trim().length == 0} className="mb-2" />
-                                            </div>
-                                            <div className="flex flex-col gap-1">
-                                                <textarea
-                                                    value={description}
-                                                    onChange={event => setDescription(event.target.value)}
-                                                    placeholder="What is your order?"
-                                                    rows={4}
-                                                    className="footerTextField"
-                                                ></textarea>
-                                                <RequiredFiled show={validate && description.trim().length == 0} className="mb-2" />
-                                            </div>
-                                                <div className={`flex gap-1 items-center mt-4 ${orderingState !== "success" ? 'hidden' : ''}`}>
-                                                    <div className="bg-green-500 orderingStateInfoDecor"></div>
-                                                    <p className="text-green-700 orderingStateInfo">Order Successfully submitted! Thank you.</p>
-                                                </div>
-                                                <div className={`flex gap-1 items-center mt-4 ${orderingState !== "failed" ? 'hidden' : ''}`}>
-                                                    <div className="bg-red-500 orderingStateInfoDecor"></div>
-                                                    <p className="text-red-500 orderingStateInfo">Request failed! please try again.</p>
-                                                </div>
-                                            <input type="submit" value={`${orderingState !== "loading" ? 'Submit order' : 'Ordering...'}`} className="w-80 sm:w-[500px] button disabled:opacity-80" disabled={orderingState == "loading"} />
-                                        </form>
+                                        <OrderForm />
                                     </div>
                             }
                             <div className="flex flex-col items-center w-full bg-gray-300 py-3">

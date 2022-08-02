@@ -43,7 +43,6 @@
     @apply p-1 object-cover;
     -webkit-background-clip: content-box;
     background-clip: content-box;
-    /* background-color: #c2c2c2; */
 }
 
 .imageCard{
@@ -54,9 +53,9 @@
     @apply shadow-lg p-2 rounded-lg primaryGradientBg text-center
 }
 .orderingStateInfo{
-    /* @apply te */
+    @apply text-sm xxs:text-base
 }
 
 .orderingStateInfoDecor{
-    @apply h-5 w-1 rounded
+    @apply h-6 w-1 rounded
 }
