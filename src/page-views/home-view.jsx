@@ -14,10 +14,7 @@ export default function HomeView({ landingImages, other, notices, categories, pr
         return (
             <div className='w-full ' id="hero">
                 <div className='relative'>
-                    {/* <Header rightInfo={<p>Dresses</p>}/>
-                    <Header rightInfo={<p className=' flex items-center gap-1'>ft4ftr4FTr <div className='bg-gray-400 rounded w-px h-5'></div> 2300 birr</p>}/> */}
-                    {/* <Header rightInfo={<p>Dresses</p>}/> */}
-                    <div className='flex w-full items-start justify-end overflow-y-hidden h-screen' style={{ minHeight: "320px", maxHeight: "780px" }}>
+                    <div className='flex w-full items-start justify-end overflow-y-hidden h-screen gap-2' style={{ minHeight: "320px", maxHeight: "780px" }}>
                         <div className='landingCol'>
                             <LandingImage url={landingImages[1]} size={[400, 200]} />
                             <div className='w-full flex flex-col justify-center items-center md:items-end py-14 whitespace-nowrap lg:pr-9 md:pr-4 '>

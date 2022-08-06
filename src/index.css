@@ -45,7 +45,7 @@
     @apply bg-white border border-gray-300 shadow w-80 sm:w-[500px] rounded-lg p-3 resize-none outline-none
 }
 .landingImage{
-    @apply pl-2 pr-0 pb-2 pt-0 object-cover;
+    @apply pb-2;
     -webkit-background-clip: content-box;
     background-clip: content-box;
 }

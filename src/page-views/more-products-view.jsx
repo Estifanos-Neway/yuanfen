@@ -15,8 +15,7 @@ export default function MoreProductsView({ categoryName, productList }) {
           <p className="text-lg">{categoryName} by {capitalize(companyName)}</p>
           <div className="w-[60px] divider"></div>
         </div>
-        <div className="grid w-full justify-evenly gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, 187.5px" }
-        }>
+        <div className="grid w-full max-w-[955px] justify-evenly gap-5 md:gap-10 productRowListCon">
           {productList.map((product, index) => <Product key={index} _id={product._id} price={product.price} imageUrl={product.primaryImage.asset.url} />)}
           <div className="flicking-panel" key={productList.length}><Product _id="" price="" imageUrl="" finalInList={true} /></div>
         </div>

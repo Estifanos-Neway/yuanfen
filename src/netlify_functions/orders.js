@@ -57,7 +57,7 @@ exports.handler = async function (event, context, callback) {
             } catch (error) {
                 callback(null, {
                     statusCode: 500,
-                    body: JSON.stringify({ message: "INTERNAL_ERROR", description: error.toString })
+                    body: JSON.stringify({ message: "INTERNAL_ERROR", description: error.toString() })
                 })
                 console.log("!ERROR!")
                 console.log("-------------------------------------------")
