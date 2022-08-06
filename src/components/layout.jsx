@@ -12,6 +12,7 @@ import { IoIosBowtie } from "react-icons/io";
 import { HashLink } from 'react-router-hash-link';
 import { useOrder } from "../hooks";
 import OrderForm from "./order-form";
+import { Icon } from "@iconify/react";
 
 function closeSidebar() {
     const sidebar = document.getElementById("sidebar");
@@ -43,47 +44,46 @@ export default function Layout({ children, noFooterOrder = false }) {
         return <>
             <div className="font-main text-gray-900">
                 <div className="fixed z-40 w-screen h-screen bg-black hidden duration-300 ease-normal md:hidden" id="sidebarBg" onClick={closeSidebar} ></div>
-                <aside className="fixed z-50 w-0 md:w-20 h-full overflow-hidden bg-white md:border-r duration-300 ease-normal py-5" style={{ "minHeight": "320px" }} id="sidebar">
-                    <div className="h-full flex flex-col justify-between items-center">
-                        <div className="">
+                <aside className="fixed z-50 w-0 md:w-20 h-full overflow-hidden bg-white md:border-r-2 duration-300 ease-normal py-5 md:pb-10" style={{ "minHeight": "320px" }} id="sidebar">
+                    <div className="h-full flex flex-col justify-between items-center gap-3">
+                        <div className="flex flex-col items-center gap-2">
                             <HashLink smooth to="/#hero">
                                 <IoIosBowtie className="text-5xl text-black" />
                             </HashLink>
-                        </div>
-                        <div className="flex flex-col items-center">
-                            <ul>
-                                <li>
-                                    <a href={instagramUrl}>
-                                        <AiOutlineInstagram className="sidebarIcon" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href={facebookUrl}>
-                                        <RiFacebookCircleLine className="sidebarIcon" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href={telegramUrl}>
-                                        <TbBrandTelegram className="sidebarIcon" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href={emailUrl}>
-                                        <HiOutlineMail className="sidebarIcon" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <AiOutlinePhone className="sidebarIcon" />
-                                </li>
-                            </ul>
-                            <div className="w-full h-px bg-gray-500 rounded"></div>
-                            <div>
-                                <HashLink smooth to="#footerOrder">
-                                    <MdShoppingCart className="sidebarIcon" />
-                                </HashLink>
+                            <div className="flex flex-col items-center gap-7">
+                                <div className="w-full h-2 primaryGradientBg rounded"></div>
+                                <ul className="flex flex-col gap-7">
+                                    <li>
+                                        <a href={instagramUrl}>
+                                            <AiOutlineInstagram className="sidebarIcon" />
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href={facebookUrl}>
+                                            <RiFacebookCircleLine className="sidebarIcon" />
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href={telegramUrl}>
+                                            <TbBrandTelegram className="sidebarIcon" />
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href={emailUrl}>
+                                            <HiOutlineMail className="sidebarIcon" />
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <AiOutlinePhone className="sidebarIcon" />
+                                    </li>
+                                </ul>
+
                             </div>
                         </div>
-                        <div onClick={closeSidebar} className="md:invisible text-2xl">
+                        <HashLink smooth to="#footerOrder" className="hidden md:block button">
+                            <MdShoppingCart className="@apply text-2xl md:text-xl " />
+                        </HashLink>
+                        <div onClick={closeSidebar} className="md:hidden text-2xl button">
                             <FaChevronLeft />
                         </div>
                     </div>
@@ -91,8 +91,10 @@ export default function Layout({ children, noFooterOrder = false }) {
                 <div className="fixed bottom-4 z-30 md:hidden primaryGradientBg bg-opacity-70 p-3 rounded-tr-2xl rounded-br-2xl" onClick={openSidebar}>
                     <FaChevronRight className="text-white text-xl" />
                 </div>
-                <main className="bg-gray-200b absolute w-screen md:w-auto min-w-[300px]  md:left-20 right-0 overflow-x-hidden">
-                    {children}
+                <main className="bg-gray-100b absolute w-screen md:w-auto min-w-[300px]  md:left-20 right-0 overflow-x-hidden">
+                    <div className="min-h-screen">
+                        {children}
+                    </div>
                     {
                         <footer className="bg-gray-200 mt-10 flex flex-col items-center px-0 gap-16" >
                             {
@@ -134,7 +136,7 @@ export default function Layout({ children, noFooterOrder = false }) {
                                 </div>
                                 <p className="text-xs">
                                     &copy;
-                                    {new Date().getFullYear()}
+                                    {new Date().getFullYear() + " "}
                                     <HashLink smooth to="/#hero">
                                         <b>Yuanfen Fashion Designs</b>
                                     </HashLink>.

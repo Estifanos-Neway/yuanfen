@@ -1,0 +1,6 @@
+{
+  "Sidebar": [1, ""],
+  "UI": [0, { "landing": [1, ""], "order": [0, ""], "footerIcons":[1,""] }],
+  "Progressive loading": [0, ""],
+  "Sanity sanity": [0, ""]
+}

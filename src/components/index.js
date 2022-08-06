@@ -13,3 +13,5 @@ export { default as Divider } from "./divider"
 export { default as PreviewCarousel } from "./preview-carousel"
 export { default as RequiredFiled } from "./required-filed";
 export { default as OrderForm } from "./order-form"
+export { default as Header } from "./header"
+export { default as FullScreenLoading } from './full-screen-loading'

@@ -6,14 +6,19 @@
 @tailwind components;
 @tailwind utilities;
 
+.nameHero {
+    @apply primaryGradientBg;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 .sidebarIcon{
-    @apply text-3xl md:text-2xl my-8
-}
-.footerIcon{
     @apply text-3xl md:text-2xl 
 }
+.footerIcon{
+    @apply text-2xl md:text-2xl 
+}
 .footerIconCon{
-    @apply border border-gray-400 rounded p-0.5
+    @apply border border-gray-400 rounded-lg p-1.5 primaryGradientBg
 }
 .landingCol{
     @apply flex flex-col items-end w-1/2;
@@ -23,7 +28,7 @@
     @apply bg-gradient-to-br from-[#121212] to-[#083E54] text-white;
 }
 .primaryGradientBgLight{
-    @apply bg-gradient-to-br from-[#097DAB] to-[#024159] text-white;
+    @apply bg-gradient-to-br from-[#097DAB] to-[#083E54] text-white;
 }
 .divider{
     @apply bg-primary rounded h-1
@@ -36,15 +41,14 @@
 .landingCol3{
     @apply hidden md:block
 }
-.footerTextField{
-    @apply bg-white border shadow w-80 sm:w-[500px] rounded-lg p-3 resize-none outline-none
+.orderFormTextarea{
+    @apply bg-white border border-gray-300 shadow w-80 sm:w-[500px] rounded-lg p-3 resize-none outline-none
 }
 .landingImage{
-    @apply p-1 object-cover;
+    @apply pl-2 pr-0 pb-2 pt-0 object-cover;
     -webkit-background-clip: content-box;
     background-clip: content-box;
 }
-
 .imageCard{
     @apply shadow-xl rounded-lg 
 }
@@ -58,4 +62,28 @@
 
 .orderingStateInfoDecor{
     @apply h-6 w-1 rounded
+}
+
+::-webkit-scrollbar {
+    @apply bg-gray-200 w-2;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply primaryGradientBg;
+}
+
+.productRowListCon{
+    grid-template-columns: repeat(auto-fit, 120px)
+}
+
+@media (min-width: 400px) {
+    .productRowListCon{
+        grid-template-columns: repeat(auto-fit, 150px)
+    }
+}
+
+@media (min-width: 500px) {
+    .productRowListCon{
+        grid-template-columns: repeat(auto-fit, 187.5px)
+    }
 }

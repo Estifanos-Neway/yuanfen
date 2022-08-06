@@ -1,13 +1,14 @@
 import React from 'react';
-import { Retry, SizedImage } from '../components'
+import { Header, Retry, SizedImage } from '../components'
 import { OrderForm } from '../components';
 
-export default function OrderView({ imageUrl, message, productId }) {
+export default function OrderView({ imageUrl, message, productId, categoryName, price = undefined }) {
     try {
         return (
-            <div className='flex flex-col items-center gap-10 px-5 pt-8 pb-14'>
+            <div className='flex flex-col items-center gap-5 px-5 pt-4 md:pt-5 pb-14'>
+                <Header rightInfo={<p className='flex items-center gap-1'>{productId} <div className='bg-gray-400 rounded w-px h-5'></div> {price? price : "-"} birr</p>} />
                 <div className="flex flex-col items-center gap-2">
-                    <p className="text-lg">Ordering <span className='font-bold'>{productId}</span></p>
+                    <p className="text-lg">Ordering <b className='font-bold'>{productId}</b> (from {categoryName} )</p>
                     <div className="w-[120px] divider"></div>
                 </div>
                 <div className='flex flex-wrap justify-center gap-x-14 items-center gap-3'>

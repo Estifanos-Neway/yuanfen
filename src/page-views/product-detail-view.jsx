@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SizedImage, Retry, PreviewCarousel } from '../components';
+import { SizedImage, Retry, PreviewCarousel, Header } from '../components';
 
-export default function ProductView({ _id, categoryName, imageUrls, productId }) {
+export default function ProductView({ _id, categoryName, imageUrls, productId, price = undefined }) {
     try {
         return (
-            <div className='flex flex-col items-center gap-5 px-5 pt-8 pb-10'>
+            <div className='flex flex-col items-center gap-5 px-5 pt-4 md:pt-5 pb-10'>
+                <Header rightInfo={<p className='flex items-center gap-1'>{productId} <div className='bg-gray-400 rounded w-px h-5'></div> {price? price : "-"} birr</p>} />
                 <div className="flex flex-col items-center gap-2">
-                    <p className="text-lg font-bold">{`${categoryName[0]}#${productId}`}</p>
+                    <div className="text-lg"><b>{productId}</b> (from {categoryName})</div>
                     <div className="w-[70px] divider"></div>
                 </div>
                 <div>

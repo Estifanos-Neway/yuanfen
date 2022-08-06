@@ -28,7 +28,7 @@ export default function OrderForm({ productId = undefined }) {
                 onChange={event => setContact(event.target.value)}
                 placeholder="Where to contact you back: phone, telegram, facebook or other"
                 rows={2}
-                className="footerTextField "
+                className="orderFormTextarea "
             ></textarea>
             <RequiredFiled show={validate && contact.trim().length == 0} className="mb-2" />
         </div>
@@ -38,7 +38,7 @@ export default function OrderForm({ productId = undefined }) {
                 onChange={event => setDescription(event.target.value)}
                 placeholder={descriptionPlaceholder}
                 rows={4}
-                className="footerTextField"
+                className="orderFormTextarea"
             ></textarea>
             <RequiredFiled show={validate && productId === undefined && description.trim().length == 0} className="mb-2" />
         </div>

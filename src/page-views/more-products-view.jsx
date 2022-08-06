@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { companyName } from "../commons/strings";
-import { Divider, Product, Retry } from "../components";
+import { Divider, Header, Product, Retry } from "../components";
 import { capitalize } from "../commons/functions";
 
 export default function MoreProductsView({ categoryName, productList }) {
@@ -9,7 +9,8 @@ export default function MoreProductsView({ categoryName, productList }) {
   }, [categoryName]);
   try {
     return (
-      <div className="px-3 sm:px-12 lg:px-32 py-5 flex flex-col items-center gap-8">
+      <div className="px-3 sm:px-12 lg:px-32 pt-4 pb-14 flex flex-col items-center gap-5">
+        <Header rightInfo={<p>{categoryName}</p>} />
         <div className="flex flex-col items-center gap-2">
           <p className="text-lg">{categoryName} by {capitalize(companyName)}</p>
           <div className="w-[60px] divider"></div>

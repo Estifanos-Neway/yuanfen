@@ -8,8 +8,7 @@ export default function Product({ _id, price, imageUrl, finalInList = false }) {
 
     return (
         <div>
-
-            <div className="relative overflow-hidden w-[187.5px] h-[250px] imageCard">
+            <div className="relative overflow-hidden w-[120px] h-[160px] xxs:w-[150px] xxs:h-[200px] xs:w-[187.5px] xs:h-[250px] imageCard">
                 {finalInList ?
                     <div className="w-full h-full flex justify-center items-center primaryGradientBg">
                         <HashLink smooth to="#footerOrder">
@@ -28,7 +27,7 @@ export default function Product({ _id, price, imageUrl, finalInList = false }) {
                                     price ? <>{price} <span className="font-semibold">birr</span></> : <span className="font-bold"> - - -</span>
                                 }
                             </p>
-                            <Link to={`/order/${_id}`} className="bg-white rounded-lg px-3 py-1 flex gap-2 w-fit items-center text-xs">
+                            <Link to={`/order/${_id}`} className="bg-white rounded-lg px-3 py-1 flex gap-2 w-fit items-center text-[10px] xxx:text-xs">
                                 <MdShoppingCart />
                                 <p>Order this</p>
                             </Link>
