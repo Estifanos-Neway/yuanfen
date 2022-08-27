@@ -1,9 +1,8 @@
 {
-  "Sidebar": [1, ""],
-  "UI": [1, { "landing": [1, ""], "order": [1, ""], "footerIcons":[1,""] }],
-  "phone":[1,""],
-  "Progressive loading": [0, ""],
-  "Sanity sanity": [0, ""],
-  "rout":[0,""]
-
+  "Progressive loading": [1, ""],
+  "UI": [0, { "detail": [0, ""] }],
+  "Sanity": [0, { "Sanity": [0, ""], "phone": [0, ""] }],
+  "scroll": [0, ""],
+  "back": [0, ""],
+  "eachPageTitle":[0,""]
 }

@@ -53,7 +53,7 @@ export default function Layout({ children, noFooterOrder = false }) {
     try {
         return <>
             <div className="font-main text-gray-900">
-                <div className="fixed z-[60] w-full flex justify-center top-7">
+                <div className="fixed z-[60] w-full flex justify-center bottom-7">
                     <div id="phoneCon" className="hidden flex items-center px-4 py-2  text-gray-500 primaryGradientBg rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
                         <div className="animate-pulse inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-gray-900 bg-blue-100 rounded-lg dark:bg-blue-800 dark:text-blue-200">
                             <AiOutlinePhone className="text-2xl" />

@@ -11,6 +11,7 @@ import { MainContext } from './contexts';
 
 import "react-alice-carousel/lib/alice-carousel.css";
 import "@egjs/react-flicking/dist/flicking-inline.css";
+import Test from './pages/test';
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
           <Route
             path="/order/:productId"
             element={<Order />}
+          />
+          <Route
+            path="/test"
+            element={<Test />}
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

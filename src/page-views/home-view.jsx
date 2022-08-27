@@ -11,12 +11,12 @@ const imageBuilder = imageUrlBuilder(sanityClient);
 
 export default function HomeView({ landingImages, other, notices, categories, products }) {
     try {
-        return (
+        return ( 
             <div className='w-full ' id="hero">
                 <div className='relative'>
                     <div className='flex w-full items-start justify-end overflow-y-hidden h-screen gap-2' style={{ minHeight: "320px", maxHeight: "780px" }}>
                         <div className='landingCol'>
-                            <LandingImage url={landingImages[1]} size={[400, 200]} />
+                            <LandingImage url={landingImages[1]} size={[200, 200]} />
                             <div className='w-full flex flex-col justify-center items-center md:items-end py-14 whitespace-nowrap lg:pr-9 md:pr-4 '>
                                 <div className='font-logo text-3xl xxs:text-4xl md:text-7xl font-bold nameHero'>{companyName.toUpperCase()}</div>
                                 <div className='font-subLogo text-md xxs:text-xl md:text-2xl nameHero'>{whatAreWe}&nbsp;</div>
